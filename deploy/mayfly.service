@@ -1,0 +1,40 @@
+[Unit]
+Description=mayfly temporary file host (Gleam)
+After=network.target
+
+[Service]
+Type=simple
+User=mayfly
+Group=mayfly
+WorkingDirectory=/var/lib/mayfly
+Environment=MAYFLY_DATA=/var/lib/mayfly
+Environment=MAYFLY_URL=https://mayfly.freifick.net
+Environment=MAYFLY_PORT=8791
+Environment="ERL_FLAGS=+S 4:4"
+ExecStart=/opt/mayfly/current/entrypoint.sh run
+Restart=on-failure
+RestartSec=3
+StateDirectory=mayfly
+StateDirectoryMode=0700
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectKernelLogs=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+RestrictRealtime=true
+LockPersonality=true
+CapabilityBoundingSet=
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+ReadWritePaths=/var/lib/mayfly
+MemoryMax=1G
+TasksMax=256
+LimitNOFILE=4096
+
+[Install]
+WantedBy=multi-user.target

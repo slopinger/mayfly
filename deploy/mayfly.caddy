@@ -1,0 +1,9 @@
+mayfly.freifick.net {
+	import security_headers
+	request_body {
+		max_size 202MiB
+	}
+	reverse_proxy 127.0.0.1:8791 {
+		header_up X-Real-IP {remote_host}
+	}
+}
