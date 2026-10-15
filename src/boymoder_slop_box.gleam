@@ -1,3 +1,4 @@
+import boymoder_slop_box/store
 import envoy
 import exception
 import gleam/erlang/process
@@ -8,7 +9,6 @@ import gleam/json
 import gleam/list
 import gleam/result
 import gleam/string
-import mayfly/store
 import mist
 import simplifile
 import wisp
@@ -117,6 +117,8 @@ fn route(
       wisp.ok() |> wisp.string_body("ok\n")
     }
     [] -> static(req, "index.html", "text/html; charset=utf-8")
+    ["logo.svg"] -> static(req, "logo.svg", "image/svg+xml")
+    ["favicon.svg"] -> static(req, "favicon.svg", "image/svg+xml")
     ["style.css"] -> static(req, "style.css", "text/css; charset=utf-8")
     ["app.js"] -> static(req, "app.js", "text/javascript; charset=utf-8")
     [asset]
@@ -125,7 +127,7 @@ fn route(
       || asset == "mascot-wave.png"
     -> {
       use <- wisp.require_method(req, http.Get)
-      let assert Ok(root) = wisp.priv_directory("mayfly")
+      let assert Ok(root) = wisp.priv_directory("boymoder_slop_box")
       wisp.file_download(
         wisp.ok(),
         named: asset,
@@ -144,7 +146,7 @@ fn static(
   content_type: String,
 ) -> wisp.Response {
   use <- wisp.require_method(req, http.Get)
-  let assert Ok(root) = wisp.priv_directory("mayfly")
+  let assert Ok(root) = wisp.priv_directory("boymoder_slop_box")
   case simplifile.read(root <> "/web/" <> file) {
     Ok(text) ->
       wisp.ok()

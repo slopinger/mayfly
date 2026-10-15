@@ -1,7 +1,7 @@
-# mayfly development notes
+# boymoder slop box development notes
 
-Gleam/Erlang temporary file host. All app logic is in `src/mayfly.gleam` and
-`src/mayfly/store.gleam`; `src/mayfly_clock.erl` is a clock-only FFI wrapper.
+Gleam/Erlang temporary file host. All app logic is in `src/boymoder_slop_box.gleam` and
+`src/boymoder_slop_box/store.gleam`; `src/boymoder_slop_box_clock.erl` is a clock-only FFI wrapper.
 Wisp/Mist stream multipart files and downloads. Vanilla frontend is `priv/web/`.
 The UI is a compact upload panel with collapsed service/API details and original
 transparent corner mascots at `priv/web/mascot-*.png` (prompts in `docs/artwork.md`).
@@ -21,3 +21,8 @@ sessionStorage excludes the previous variant on each reload; no personal data.
   service `mayfly`, loopback 8791, data `/var/lib/mayfly`. Uploads have no backups.
 - Update README and `/home/slop/CLAUDE.md` when behavior or operations change.
 - Signed commits, public MIT GitLab under slop, never commit uploads/secrets.
+
+- Gleam package: `boymoder_slop_box`. URL, repo path, service/user/data paths and
+  `MAYFLY_*` settings retain legacy names for upgrade/link compatibility.
+- Branding: original code-native `priv/web/logo.svg` + `favicon.svg`; display name
+  is “boymoder slop box”. Keep the page title, logo alt text and homepage card in sync.

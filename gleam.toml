@@ -1,6 +1,6 @@
-name = "mayfly"
+name = "boymoder_slop_box"
 version = "0.1.0"
-description = "Little files, brief lives: a self-hosted temporary file host"
+description = "boymoder slop box: anonymous temporary file sharing in Gleam"
 licences = ["MIT"]
 repository = { type = "gitlab", user = "slop", repo = "mayfly", host = "git.freifick.net" }
 target = "erlang"

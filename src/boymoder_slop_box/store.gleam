@@ -43,7 +43,7 @@ pub type Message {
   Clean
 }
 
-@external(erlang, "mayfly_clock", "now")
+@external(erlang, "boymoder_slop_box_clock", "now")
 pub fn now() -> Int
 
 pub fn token() -> String {

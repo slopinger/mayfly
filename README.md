@@ -1,11 +1,15 @@
-# mayfly
+# boymoder slop box
 
-**little files, brief lives.** An independently written, MIT-licensed temporary
+**drop a file. share a link. disappear.** An independently written, MIT-licensed temporary
 file host inspired by Litterbox. Written in **Gleam**, running on Erlang/OTP with
 Wisp and Mist. A tiny handwritten Erlang FFI exposes the system clock; all
 application and storage logic lives in Gleam. Browser enhancement uses vanilla JS.
 
 Live: https://mayfly.freifick.net · Source: https://git.freifick.net/slop/mayfly
+
+Formerly mayfly. The Gleam package is `boymoder_slop_box`. Existing URLs,
+`MAYFLY_*` environment variables, service user/unit and deployment/data paths
+retain their legacy names so upgrades preserve existing uploads and links.
 
 ## Features
 
@@ -15,7 +19,8 @@ Live: https://mayfly.freifick.net · Source: https://git.freifick.net/slop/mayfl
 - Litterbox-style multipart endpoint plus JSON API; works from curl or a browser.
 - Drag/drop, progress, copy link, local expiry display and early deletion.
 - Plain HTML form works without JS (returns JSON). No external fonts/assets/trackers.
-- A compact upload panel, starfield, beveled window and subtle transparent anime mascots.
+- A custom hood-and-box SVG logo, matching favicon, compact upload panel,
+  starfield, beveled window and subtle transparent anime mascots.
 - Service/API notes stay in collapsed details; artwork sits outside the upload controls.
 - Persistent disk metadata, 10 GiB storage quota, four simultaneous uploads,
   20 upload attempts/hour/IP. Requests with an Origin must match MAYFLY_URL.
@@ -150,3 +155,6 @@ corner on desktop and top-right on narrow screens. Each reload chooses a differe
 variant from the previous one using tab-local sessionStorage (only an artwork name;
 no cookies or personal data). If storage is disabled, selection remains random. The final prompt is recorded in [docs/artwork.md](docs/artwork.md). It is
 served locally; there are no third-party image requests.
+
+The logo and favicon are original code-native SVGs at `priv/web/logo.svg` and
+`priv/web/favicon.svg`; no fonts or artwork are fetched from third parties.

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 124" fill="none" role="img" aria-labelledby="title"><title id="title">boymoder slop box</title>
+<g stroke-linejoin="round" stroke-linecap="round">
+<path d="M18 51C18 25 33 9 52 9s34 16 34 42l9 39-43 24L9 90z" fill="#272d45" stroke="#f6b6d2" stroke-width="3"/>
+<path d="M30 49c0-16 9-26 22-26s22 10 22 26v13H30z" fill="#111529" stroke="#8992a8" stroke-width="2"/>
+<path d="M41 46h3m16 0h3" stroke="#f6b6d2" stroke-width="4"/>
+<path d="m12 66 40-16 40 16-40 19z" fill="#e3efb8" stroke="#111529" stroke-width="3"/>
+<path d="m12 66 40 19v30L12 96z" fill="#9dac70" stroke="#111529" stroke-width="3"/>
+<path d="m52 85 40-19v30l-40 19z" fill="#cde58b" stroke="#111529" stroke-width="3"/>
+<path d="m52 50 17 8-39 18" stroke="#65724d" stroke-width="3"/>
+<path d="M66 88v8m8-12v8" stroke="#65724d" stroke-width="3"/>
+<path d="M22 58v15m60-15v15" stroke="#f6b6d2" stroke-width="3"/>
+<path d="m107 18 3-7 3 7 7 3-7 3-3 7-3-7-7-3z" fill="#f6b6d2"/>
+</g>
+<text x="132" y="38" fill="#f6b6d2" font-family="'Courier New',monospace" font-size="19" font-weight="700" letter-spacing="5">boymoder</text>
+<text x="128" y="91" fill="#d3ec92" font-family="Georgia,serif" font-size="61" font-weight="700" font-style="italic" letter-spacing="-2">slop box</text>
+<path d="M133 105h271" stroke="#6c775b" stroke-width="2" stroke-dasharray="3 5"/>
+</svg>

@@ -1,5 +1,5 @@
 [Unit]
-Description=mayfly temporary file host (Gleam)
+Description=boymoder slop box temporary file host (Gleam)
 After=network.target
 
 [Service]

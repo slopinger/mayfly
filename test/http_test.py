@@ -73,7 +73,7 @@ with tempfile.TemporaryDirectory(prefix='mayfly-http-', dir=os.environ.get('MAYF
 
     try:
         start()
-        for path, kind in [('/', 'text/html'), ('/style.css', 'text/css'), ('/app.js', 'text/javascript')]:
+        for path, kind in [('/', 'text/html'), ('/style.css', 'text/css'), ('/app.js', 'text/javascript'), ('/logo.svg', 'image/svg+xml'), ('/favicon.svg', 'image/svg+xml')]:
             status, body, headers = request(path)
             assert status == 200 and headers['Content-Type'].startswith(kind), (path, status)
             assert body and headers['X-Content-Type-Options'] == 'nosniff'

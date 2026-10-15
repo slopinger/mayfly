@@ -8,7 +8,8 @@ try {
   const errors=[];
   page.on('pageerror', e=>errors.push(e.message));
   await page.goto(base,{waitUntil:'networkidle'});
-  assert.equal(await page.title(),'mayfly :: little files, brief lives');
+  assert.equal(await page.title(),'boymoder slop box :: temporary file sharing');
+  assert.equal(await page.locator('.logo').evaluate(img=>img.complete && img.naturalWidth>0),true,'logo loaded');
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth <= innerWidth),true,`overflow at ${width}`);
   assert.equal(await page.locator('#corner-girl').evaluate(img=>img.complete && img.naturalWidth>0),true,'anime artwork loaded');
   assert.equal(await page.locator('#how').getAttribute('open'),null);

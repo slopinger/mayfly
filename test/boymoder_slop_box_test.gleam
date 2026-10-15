@@ -1,9 +1,9 @@
+import boymoder_slop_box
+import boymoder_slop_box/store
 import gleam/dict
 import gleam/erlang/process
 import gleeunit
 import gleeunit/should
-import mayfly
-import mayfly/store
 import simplifile
 import wisp
 
@@ -12,28 +12,31 @@ pub fn main() {
 }
 
 pub fn lifetime_test() {
-  mayfly.lifetime("1h") |> should.equal(Ok(1))
-  mayfly.lifetime("12h") |> should.equal(Ok(12))
-  mayfly.lifetime("24h") |> should.equal(Ok(24))
-  mayfly.lifetime("72h") |> should.equal(Ok(72))
-  mayfly.lifetime("-1") |> should.equal(Error(Nil))
-  mayfly.lifetime("2h") |> should.equal(Error(Nil))
+  boymoder_slop_box.lifetime("1h") |> should.equal(Ok(1))
+  boymoder_slop_box.lifetime("12h") |> should.equal(Ok(12))
+  boymoder_slop_box.lifetime("24h") |> should.equal(Ok(24))
+  boymoder_slop_box.lifetime("72h") |> should.equal(Ok(72))
+  boymoder_slop_box.lifetime("-1") |> should.equal(Error(Nil))
+  boymoder_slop_box.lifetime("2h") |> should.equal(Error(Nil))
 }
 
 pub fn validation_test() {
   store.valid_id("../../etc/passwd") |> should.be_false
   store.valid_id(store.token()) |> should.be_true
-  mayfly.safe_name("C:\\fakepath\\hello\n.txt") |> should.equal("hello.txt")
+  boymoder_slop_box.safe_name("C:\\fakepath\\hello\n.txt")
+  |> should.equal("hello.txt")
   let file = wisp.UploadedFile("test.txt", "/tmp/not-real")
-  mayfly.validate_form(wisp.FormData([], [#("file", file)]))
+  boymoder_slop_box.validate_form(wisp.FormData([], [#("file", file)]))
   |> should.equal(Ok(#(file, 1)))
-  mayfly.validate_form(
+  boymoder_slop_box.validate_form(
     wisp.FormData([#("time", "1h"), #("time", "72h")], [#("file", file)]),
   )
   |> should.be_error
-  mayfly.validate_form(wisp.FormData([], [#("file", file), #("file", file)]))
+  boymoder_slop_box.validate_form(
+    wisp.FormData([], [#("file", file), #("file", file)]),
+  )
   |> should.be_error
-  mayfly.validate_form(
+  boymoder_slop_box.validate_form(
     wisp.FormData([#("reqtype", "urlupload")], [#("file", file)]),
   )
   |> should.be_error
