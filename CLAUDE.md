@@ -34,3 +34,6 @@ sessionStorage excludes the previous variant on each reload; no personal data.
 - Nix: `nix build`, `nix flake check`, `nix develop`; commit `flake.lock`.
   `nixosModules.default` exports the reusable host module; see README for options and limits.
 - Never add Co-Authored-By trailers or session links to public GitLab content.
+
+- Nix package/executable: `slopbox`; NixOS option remains `services.mayfly`.
+  Verify with `nix build --no-link` and `nix flake check`.

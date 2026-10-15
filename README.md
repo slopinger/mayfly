@@ -163,7 +163,7 @@ The logo and favicon are original code-native SVGs at `priv/web/logo.svg` and
 
 `nix build` builds the Erlang shipment, with dependencies fetched by the hashes
 in `manifest.toml`, and runs formatting, Gleam and isolated HTTP checks in the
-sandbox. `nix flake check` builds this check. The resulting `bin/mayfly` includes
+sandbox. `nix flake check` builds this check. The resulting `bin/slopbox` includes
 its Erlang runtime. `nix develop` provides Gleam, Erlang, rebar3 and Python.
 Linux x86_64/aarch64 packages are defined; x86_64 is the validation host.
 
@@ -173,3 +173,6 @@ and `port` control the executable and loopback HTTP port. The module creates
 the mayfly user and private `/var/lib/mayfly` state. Configure a TLS proxy that
 overwrites X-Real-IP; never expose Mist directly. Upload data has no backup.
 Existing Arch deployment continues through `./deploy.sh`.
+
+The Nix package and executable are named `slopbox`. The NixOS option remains
+`services.mayfly` for compatibility with existing module configurations.

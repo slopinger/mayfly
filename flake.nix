@@ -1,5 +1,5 @@
 {
-  description = "boymoder slop box temporary file host";
+  description = "slopbox temporary file host";
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   outputs = { self, nixpkgs }: let
     systems = [ "x86_64-linux" "aarch64-linux" ];
@@ -21,7 +21,7 @@
       };
     in {
       default = pkgs.stdenvNoCC.mkDerivation {
-        pname = "mayfly";
+        pname = "slopbox";
         version = "0.1.0";
         src = pkgs.lib.cleanSourceWith {
           src = self;
@@ -57,12 +57,12 @@
           python3 test/http_test.py
         '';
         installPhase = ''
-          mkdir -p $out/lib/mayfly
-          cp -r build/erlang-shipment/. $out/lib/mayfly/
-          makeWrapper $out/lib/mayfly/entrypoint.sh $out/bin/mayfly \
+          mkdir -p $out/lib/slopbox
+          cp -r build/erlang-shipment/. $out/lib/slopbox/
+          makeWrapper $out/lib/slopbox/entrypoint.sh $out/bin/slopbox \
             --prefix PATH : ${pkgs.lib.makeBinPath [ pkgs.erlang ]} --add-flags run
         '';
-        meta = { license = pkgs.lib.licenses.mit; platforms = systems; mainProgram = "mayfly"; };
+        meta = { license = pkgs.lib.licenses.mit; platforms = systems; mainProgram = "slopbox"; };
       };
     });
     checks = eachSystem (system: { package = self.packages.${system}.default; });
