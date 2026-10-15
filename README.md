@@ -158,3 +158,18 @@ served locally; there are no third-party image requests.
 
 The logo and favicon are original code-native SVGs at `priv/web/logo.svg` and
 `priv/web/favicon.svg`; no fonts or artwork are fetched from third parties.
+
+## Nix packaging
+
+`nix build` builds the Erlang shipment, with dependencies fetched by the hashes
+in `manifest.toml`, and runs formatting, Gleam and isolated HTTP checks in the
+sandbox. `nix flake check` builds this check. The resulting `bin/mayfly` includes
+its Erlang runtime. `nix develop` provides Gleam, Erlang, rebar3 and Python.
+Linux x86_64/aarch64 packages are defined; x86_64 is the validation host.
+
+Import `inputs.mayfly.nixosModules.default`, enable `services.mayfly.enable`,
+and set `services.mayfly.url = "https://files.example.org";`. Options `package`
+and `port` control the executable and loopback HTTP port. The module creates
+the mayfly user and private `/var/lib/mayfly` state. Configure a TLS proxy that
+overwrites X-Real-IP; never expose Mist directly. Upload data has no backup.
+Existing Arch deployment continues through `./deploy.sh`.

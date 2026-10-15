@@ -30,3 +30,7 @@ sessionStorage excludes the previous variant on each reload; no personal data.
 - Every software change must maintain project-owned Nix flake packaging, a committed lockfile,
   development tools and checks. Export a reusable NixOS module where host/service integration
   applies. Verify package builds and relevant flake checks; document supported commands in README.
+
+- Nix: `nix build`, `nix flake check`, `nix develop`; commit `flake.lock`.
+  `nixosModules.default` exports the reusable host module; see README for options and limits.
+- Never add Co-Authored-By trailers or session links to public GitLab content.
