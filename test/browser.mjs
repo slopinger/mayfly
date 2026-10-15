@@ -10,8 +10,21 @@ try {
   await page.goto(base,{waitUntil:'networkidle'});
   assert.equal(await page.title(),'mayfly :: little files, brief lives');
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth <= innerWidth),true,`overflow at ${width}`);
-  assert.equal(await page.locator('.mascots img').evaluate(img=>img.complete && img.naturalWidth>0),true,'anime artwork loaded');
+  assert.equal(await page.locator('#corner-girl').evaluate(img=>img.complete && img.naturalWidth>0),true,'anime artwork loaded');
   assert.equal(await page.locator('#how').getAttribute('open'),null);
+  let previous = await page.locator('#corner-girl').getAttribute('src');
+  for (let n=0;n<4;n++) {
+    await page.reload({waitUntil:'networkidle'});
+    const current = await page.locator('#corner-girl').getAttribute('src');
+    assert.notEqual(current,previous,'artwork changes at each reload');
+    previous=current;
+  }
+  assert.equal(await page.locator('#corner-girl').evaluate(img=>getComputedStyle(img).pointerEvents),'none');
+  const art = await page.locator('#corner-girl').boundingBox();
+  const panel = await page.locator('#upload').boundingBox();
+  assert(art.x+art.width<=panel.x || art.x>=panel.x+panel.width || art.y+art.height<=panel.y || art.y>=panel.y+panel.height,'decoration stays outside upload controls');
+
+
   await page.screenshot({path:`/tmp/mayfly-${width}.png`,fullPage:true});
   await page.locator('#file').setInputFiles({name:'browser-test.txt',mimeType:'text/plain',buffer:Buffer.from('mayfly browser test')});
   await page.locator('#send').click();
@@ -26,7 +39,7 @@ try {
   await page.waitForFunction(()=>document.getElementById('delete').disabled);
   assert.equal((await page.request.get(link)).status(),404);
   assert.deepEqual(errors,[]);
-  console.log(`${width}px: upload, result, download, deletion, no overflow or JS errors`);
+  console.log(`${width}px: rotating corner artwork, upload/download/delete, no overlap or overflow`);
   await page.close();
  }
 } finally { await browser.close(); }

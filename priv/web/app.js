@@ -1,5 +1,14 @@
 'use strict';
 const $ = id => document.getElementById(id);
+// Keep only the previous artwork in this tab, so every reload gets another.
+const mascots = ['disk', 'tea', 'wave'];
+let previous = null;
+try { previous = sessionStorage.getItem('mayfly-mascot'); } catch {}
+const choices = mascots.filter(name => name !== previous);
+const mascot = choices[Math.floor(Math.random() * choices.length)];
+$('corner-girl').src = `/mascot-${mascot}.png`;
+try { sessionStorage.setItem('mayfly-mascot', mascot); } catch {}
+
 const form = document.querySelector('form');
 const status = $('status');
 const file = $('file');
