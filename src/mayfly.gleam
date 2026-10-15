@@ -65,7 +65,7 @@ pub fn handle(
     case string.starts_with(req.path, "/f/") {
       True -> "sandbox; default-src 'none'"
       False ->
-        "default-src 'none'; style-src 'self'; script-src 'self'; connect-src 'self'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'; sandbox allow-scripts allow-same-origin allow-forms allow-downloads allow-modals"
+        "default-src 'none'; img-src 'self'; style-src 'self'; script-src 'self'; connect-src 'self'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'; sandbox allow-scripts allow-same-origin allow-forms allow-downloads allow-modals"
     },
   )
 }
@@ -119,6 +119,17 @@ fn route(
     [] -> static(req, "index.html", "text/html; charset=utf-8")
     ["style.css"] -> static(req, "style.css", "text/css; charset=utf-8")
     ["app.js"] -> static(req, "app.js", "text/javascript; charset=utf-8")
+    ["anime-girls.png"] -> {
+      use <- wisp.require_method(req, http.Get)
+      let assert Ok(root) = wisp.priv_directory("mayfly")
+      wisp.file_download(
+        wisp.ok(),
+        named: "anime-girls.png",
+        from: root <> "/web/anime-girls.png",
+      )
+      |> wisp.set_header("content-type", "image/png")
+      |> wisp.set_header("content-disposition", "inline")
+    }
     _ -> wisp.not_found()
   }
 }

@@ -15,7 +15,8 @@ Live: https://mayfly.freifick.net · Source: https://git.freifick.net/slop/mayfl
 - Litterbox-style multipart endpoint plus JSON API; works from curl or a browser.
 - Drag/drop, progress, copy link, local expiry display and early deletion.
 - Plain HTML form works without JS (returns JSON). No external fonts/assets/trackers.
-- Starfield tiles, beveled windows, ASCII bugs, button badges and small-web manners.
+- A compact upload panel, starfield, beveled window and original anime illustration.
+- Service/API notes stay in collapsed details; mobile puts the upload form first.
 - Persistent disk metadata, 10 GiB storage quota, four simultaneous uploads,
   20 upload attempts/hour/IP. Requests with an Origin must match MAYFLY_URL.
 
@@ -140,3 +141,9 @@ active uploads (plus small metadata/header overhead). Temp files are staged in `
 so publication can rename atomically even when `/tmp` is tmpfs. Staging is
 cleared at startup; run only one process per data directory. The service also
 enables PrivateTmp for other temporary files. There is no upload backup or durable availability promise.
+
+## Artwork
+
+`priv/web/anime-girls.png` is original art generated with the built-in imagegen
+tool. The final prompt is recorded in [docs/artwork.md](docs/artwork.md). It is
+served locally; there are no third-party image requests.

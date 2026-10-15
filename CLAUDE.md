@@ -3,6 +3,9 @@
 Gleam/Erlang temporary file host. All app logic is in `src/mayfly.gleam` and
 `src/mayfly/store.gleam`; `src/mayfly_clock.erl` is a clock-only FFI wrapper.
 Wisp/Mist stream multipart files and downloads. Vanilla frontend is `priv/web/`.
+The UI is a compact upload panel with collapsed service/API details and original
+anime art at `priv/web/anime-girls.png` (generation prompt in `docs/artwork.md`).
+On mobile, keep the upload controls above the illustration.
 
 - `gleam format --check src test`; `gleam test`; `gleam export erlang-shipment`;
   `python3 test/http_test.py`. HTTP fixtures use temp storage and free local ports.

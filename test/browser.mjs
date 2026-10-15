@@ -10,6 +10,8 @@ try {
   await page.goto(base,{waitUntil:'networkidle'});
   assert.equal(await page.title(),'mayfly :: little files, brief lives');
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth <= innerWidth),true,`overflow at ${width}`);
+  assert.equal(await page.locator('.mascots img').evaluate(img=>img.complete && img.naturalWidth>0),true,'anime artwork loaded');
+  assert.equal(await page.locator('#how').getAttribute('open'),null);
   await page.screenshot({path:`/tmp/mayfly-${width}.png`,fullPage:true});
   await page.locator('#file').setInputFiles({name:'browser-test.txt',mimeType:'text/plain',buffer:Buffer.from('mayfly browser test')});
   await page.locator('#send').click();
@@ -19,7 +21,7 @@ try {
   assert.equal(download.status(),200);
   assert.equal(await download.text(),'mayfly browser test');
   page.on('dialog', dialog=>dialog.accept());
-  await page.locator('summary').click();
+  await page.locator('#result summary').click();
   await page.locator('#delete').click();
   await page.waitForFunction(()=>document.getElementById('delete').disabled);
   assert.equal((await page.request.get(link)).status(),404);
