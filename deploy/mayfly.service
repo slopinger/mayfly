@@ -8,7 +8,7 @@ User=mayfly
 Group=mayfly
 WorkingDirectory=/var/lib/mayfly
 Environment=MAYFLY_DATA=/var/lib/mayfly
-Environment=MAYFLY_URL=https://mayfly.freifick.net
+Environment=MAYFLY_URL=https://slopbox.freifick.net
 Environment=MAYFLY_PORT=8791
 Environment="ERL_FLAGS=+S 4:4"
 ExecStart=/opt/mayfly/current/entrypoint.sh run

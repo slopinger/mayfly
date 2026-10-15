@@ -5,9 +5,10 @@ file host inspired by Litterbox. Written in **Gleam**, running on Erlang/OTP wit
 Wisp and Mist. A tiny handwritten Erlang FFI exposes the system clock; all
 application and storage logic lives in Gleam. Browser enhancement uses vanilla JS.
 
-Live: https://mayfly.freifick.net · Source: https://git.freifick.net/slop/mayfly
+Live: https://slopbox.freifick.net · Source: https://git.freifick.net/slop/mayfly
 
-Formerly mayfly. The Gleam package is `slopbox`. Existing URLs,
+Formerly mayfly. The Gleam package is `slopbox`. Old `mayfly.freifick.net`
+URLs redirect (308) to `slopbox.freifick.net`, preserving paths and methods. Existing
 `MAYFLY_*` environment variables, service user/unit and deployment/data paths
 retain their legacy names so upgrades preserve existing uploads and links.
 
@@ -58,7 +59,7 @@ provided Caddy site has no access log. Service errors can appear in journald.
 
 ```sh
 curl -F reqtype=fileupload -F time=24h -F fileToUpload=@file.zip \
-  https://mayfly.freifick.net/resources/internals/api.php
+  https://slopbox.freifick.net/resources/internals/api.php
 ```
 
 Returns a plain download URL. Change the path to `/api/upload` to receive JSON:
@@ -119,13 +120,13 @@ Gleam, Erlang/OTP and rebar3. Deploy only committed source; tests run first.
 Release files are root-owned under `/opt/mayfly/releases/<commit>`, with atomic
 `/opt/mayfly/current` switch. The hardened `mayfly.service` runs as `mayfly`,
 listens on 127.0.0.1:8791 and stores uploads/JSON in `/var/lib/mayfly`.
-Caddy terminates TLS at mayfly.freifick.net, replacing X-Real-IP. DNS is DNS-only
+Caddy terminates TLS at slopbox.freifick.net, replacing X-Real-IP. DNS is DNS-only
 A/AAAA to this host; provision DNS before deployment. No new public ports.
 
 ```sh
 sudo systemctl status mayfly
 sudo journalctl -u mayfly
-curl -fsS https://mayfly.freifick.net/healthz
+curl -fsS https://slopbox.freifick.net/healthz
 ```
 
 Retain Erlang on the server; the shipment contains compiled application and library

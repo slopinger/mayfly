@@ -57,4 +57,4 @@ for attempt in {1..30}; do
 done
 if ! "$ready"; then rollback; fi
 if ! sudo systemctl reload caddy; then rollback; fi
-printf 'Deployed %s at https://mayfly.freifick.net\n' "$revision"
+printf 'Deployed %s at https://slopbox.freifick.net\n' "$revision"

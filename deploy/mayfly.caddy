@@ -1,4 +1,4 @@
-mayfly.freifick.net {
+slopbox.freifick.net {
 	import security_headers
 	request_body {
 		max_size 202MiB
@@ -6,4 +6,10 @@ mayfly.freifick.net {
 	reverse_proxy 127.0.0.1:8791 {
 		header_up X-Real-IP {remote_host}
 	}
+}
+
+# Preserve existing download/deletion URLs and API methods.
+mayfly.freifick.net {
+	import security_headers
+	redir https://slopbox.freifick.net{uri} 308
 }

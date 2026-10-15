@@ -22,7 +22,7 @@ sessionStorage excludes the previous variant on each reload; no personal data.
 - Update README and `/home/slop/CLAUDE.md` when behavior or operations change.
 - Signed commits, public MIT GitLab under slop, never commit uploads/secrets.
 
-- Gleam package: `slopbox`. URL, repo path, service/user/data paths and
+- Gleam package: `slopbox`. Repo path, service/user/data paths and
   `MAYFLY_*` settings retain legacy names for upgrade/link compatibility.
 - Branding: original code-native `priv/web/logo.svg` + `favicon.svg`; display name
   is “slopbox”. Keep the page title, logo alt text and homepage card in sync.
@@ -37,3 +37,7 @@ sessionStorage excludes the previous variant on each reload; no personal data.
 
 - Nix package/executable: `slopbox`; NixOS option remains `services.mayfly`.
   Verify with `nix build --no-link` and `nix flake check`.
+
+- Canonical origin is https://slopbox.freifick.net. `mayfly.freifick.net` returns
+  308 redirects preserving the URI/method. Both site blocks remain in the legacy
+  `/etc/caddy/conf.d/mayfly.freifick.net.caddy`; DNS A/AAAA are DNS-only.
