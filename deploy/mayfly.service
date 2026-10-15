@@ -1,5 +1,5 @@
 [Unit]
-Description=boymoder slop box temporary file host (Gleam)
+Description=slopbox temporary file host (Gleam)
 After=network.target
 
 [Service]

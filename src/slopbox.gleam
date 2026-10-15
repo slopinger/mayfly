@@ -1,4 +1,3 @@
-import boymoder_slop_box/store
 import envoy
 import exception
 import gleam/erlang/process
@@ -11,6 +10,7 @@ import gleam/result
 import gleam/string
 import mist
 import simplifile
+import slopbox/store
 import wisp
 import wisp/wisp_mist
 
@@ -127,7 +127,7 @@ fn route(
       || asset == "mascot-wave.png"
     -> {
       use <- wisp.require_method(req, http.Get)
-      let assert Ok(root) = wisp.priv_directory("boymoder_slop_box")
+      let assert Ok(root) = wisp.priv_directory("slopbox")
       wisp.file_download(
         wisp.ok(),
         named: asset,
@@ -146,7 +146,7 @@ fn static(
   content_type: String,
 ) -> wisp.Response {
   use <- wisp.require_method(req, http.Get)
-  let assert Ok(root) = wisp.priv_directory("boymoder_slop_box")
+  let assert Ok(root) = wisp.priv_directory("slopbox")
   case simplifile.read(root <> "/web/" <> file) {
     Ok(text) ->
       wisp.ok()

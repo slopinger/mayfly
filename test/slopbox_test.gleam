@@ -1,10 +1,10 @@
-import boymoder_slop_box
-import boymoder_slop_box/store
 import gleam/dict
 import gleam/erlang/process
 import gleeunit
 import gleeunit/should
 import simplifile
+import slopbox
+import slopbox/store
 import wisp
 
 pub fn main() {
@@ -12,31 +12,29 @@ pub fn main() {
 }
 
 pub fn lifetime_test() {
-  boymoder_slop_box.lifetime("1h") |> should.equal(Ok(1))
-  boymoder_slop_box.lifetime("12h") |> should.equal(Ok(12))
-  boymoder_slop_box.lifetime("24h") |> should.equal(Ok(24))
-  boymoder_slop_box.lifetime("72h") |> should.equal(Ok(72))
-  boymoder_slop_box.lifetime("-1") |> should.equal(Error(Nil))
-  boymoder_slop_box.lifetime("2h") |> should.equal(Error(Nil))
+  slopbox.lifetime("1h") |> should.equal(Ok(1))
+  slopbox.lifetime("12h") |> should.equal(Ok(12))
+  slopbox.lifetime("24h") |> should.equal(Ok(24))
+  slopbox.lifetime("72h") |> should.equal(Ok(72))
+  slopbox.lifetime("-1") |> should.equal(Error(Nil))
+  slopbox.lifetime("2h") |> should.equal(Error(Nil))
 }
 
 pub fn validation_test() {
   store.valid_id("../../etc/passwd") |> should.be_false
   store.valid_id(store.token()) |> should.be_true
-  boymoder_slop_box.safe_name("C:\\fakepath\\hello\n.txt")
+  slopbox.safe_name("C:\\fakepath\\hello\n.txt")
   |> should.equal("hello.txt")
   let file = wisp.UploadedFile("test.txt", "/tmp/not-real")
-  boymoder_slop_box.validate_form(wisp.FormData([], [#("file", file)]))
+  slopbox.validate_form(wisp.FormData([], [#("file", file)]))
   |> should.equal(Ok(#(file, 1)))
-  boymoder_slop_box.validate_form(
+  slopbox.validate_form(
     wisp.FormData([#("time", "1h"), #("time", "72h")], [#("file", file)]),
   )
   |> should.be_error
-  boymoder_slop_box.validate_form(
-    wisp.FormData([], [#("file", file), #("file", file)]),
-  )
+  slopbox.validate_form(wisp.FormData([], [#("file", file), #("file", file)]))
   |> should.be_error
-  boymoder_slop_box.validate_form(
+  slopbox.validate_form(
     wisp.FormData([#("reqtype", "urlupload")], [#("file", file)]),
   )
   |> should.be_error

@@ -1,7 +1,7 @@
-# boymoder slop box development notes
+# slopbox development notes
 
-Gleam/Erlang temporary file host. All app logic is in `src/boymoder_slop_box.gleam` and
-`src/boymoder_slop_box/store.gleam`; `src/boymoder_slop_box_clock.erl` is a clock-only FFI wrapper.
+Gleam/Erlang temporary file host. All app logic is in `src/slopbox.gleam` and
+`src/slopbox/store.gleam`; `src/slopbox_clock.erl` is a clock-only FFI wrapper.
 Wisp/Mist stream multipart files and downloads. Vanilla frontend is `priv/web/`.
 The UI is a compact upload panel with collapsed service/API details and original
 transparent corner mascots at `priv/web/mascot-*.png` (prompts in `docs/artwork.md`).
@@ -22,10 +22,10 @@ sessionStorage excludes the previous variant on each reload; no personal data.
 - Update README and `/home/slop/CLAUDE.md` when behavior or operations change.
 - Signed commits, public MIT GitLab under slop, never commit uploads/secrets.
 
-- Gleam package: `boymoder_slop_box`. URL, repo path, service/user/data paths and
+- Gleam package: `slopbox`. URL, repo path, service/user/data paths and
   `MAYFLY_*` settings retain legacy names for upgrade/link compatibility.
 - Branding: original code-native `priv/web/logo.svg` + `favicon.svg`; display name
-  is “boymoder slop box”. Keep the page title, logo alt text and homepage card in sync.
+  is “slopbox”. Keep the page title, logo alt text and homepage card in sync.
 
 - Every software change must maintain project-owned Nix flake packaging, a committed lockfile,
   development tools and checks. Export a reusable NixOS module where host/service integration

@@ -1,4 +1,4 @@
-# boymoder slop box
+# slopbox
 
 **drop a file. share a link. disappear.** An independently written, MIT-licensed temporary
 file host inspired by Litterbox. Written in **Gleam**, running on Erlang/OTP with
@@ -7,7 +7,7 @@ application and storage logic lives in Gleam. Browser enhancement uses vanilla J
 
 Live: https://mayfly.freifick.net · Source: https://git.freifick.net/slop/mayfly
 
-Formerly mayfly. The Gleam package is `boymoder_slop_box`. Existing URLs,
+Formerly mayfly. The Gleam package is `slopbox`. Existing URLs,
 `MAYFLY_*` environment variables, service user/unit and deployment/data paths
 retain their legacy names so upgrades preserve existing uploads and links.
 
