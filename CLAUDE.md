@@ -26,3 +26,7 @@ sessionStorage excludes the previous variant on each reload; no personal data.
   `MAYFLY_*` settings retain legacy names for upgrade/link compatibility.
 - Branding: original code-native `priv/web/logo.svg` + `favicon.svg`; display name
   is “boymoder slop box”. Keep the page title, logo alt text and homepage card in sync.
+
+- Every software change must maintain project-owned Nix flake packaging, a committed lockfile,
+  development tools and checks. Export a reusable NixOS module where host/service integration
+  applies. Verify package builds and relevant flake checks; document supported commands in README.
