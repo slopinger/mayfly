@@ -8,7 +8,7 @@ fi
 gleam format --check src test
 gleam test
 gleam export erlang-shipment
-python3 test/http_test.py
+MAYFLY_TEST_TMPDIR=/var/tmp python3 test/http_test.py
 revision=$(git rev-parse HEAD)
 release="/opt/mayfly/releases/$revision"
 config=/etc/caddy/conf.d/mayfly.freifick.net.caddy

@@ -10,6 +10,8 @@ Wisp/Mist stream multipart files and downloads. Vanilla frontend is `priv/web/`.
 - Storage actor serializes publication/deletion and reserves quota before reading
   bodies. Preserve streaming, size/field/rate/concurrency limits, hashed deletion
   secrets, exact expiry checks and attachment-only downloads.
+- Wisp staging is forced into `MAYFLY_DATA/tmp` and cleared on startup; keep it
+  on the data filesystem for atomic rename. One process per data directory.
 - Loopback binding is required. Caddy MUST overwrite X-Real-IP; no access log.
 - Deploy committed source with `./deploy.sh`; shipped BEAM at `/opt/mayfly/current`,
   service `mayfly`, loopback 8791, data `/var/lib/mayfly`. Uploads have no backups.

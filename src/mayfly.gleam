@@ -19,6 +19,16 @@ pub fn main() {
   let base = envoy.get("MAYFLY_URL") |> result.unwrap("http://127.0.0.1:8791")
   let port =
     envoy.get("MAYFLY_PORT") |> result.try(int.parse) |> result.unwrap(8791)
+  // Wisp must stage files on the data filesystem so publication can rename
+  // atomically (the host's /tmp may be tmpfs or another mount).
+  let staging = dir <> "/tmp"
+  let assert Ok(_) = simplifile.create_directory_all(dir)
+  case simplifile.delete(staging) {
+    Ok(_) | Error(simplifile.Enoent) -> Nil
+    Error(_) -> panic as "Cannot clear interrupted upload staging"
+  }
+  let assert Ok(_) = simplifile.create_directory_all(staging)
+  envoy.set("TMPDIR", staging)
   let state = store.start(dir)
   let _ = process.spawn(fn() { cleaner(state) })
   let secret = wisp.random_string(64)

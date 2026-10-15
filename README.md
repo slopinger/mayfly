@@ -88,6 +88,9 @@ python3 test/http_test.py
 The HTTP test launches a disposable production shipment on a free loopback port
 with temporary storage, exercises restart/expiry, and streams a 201 MiB rejected
 request without allocating it in memory. It never touches live uploads.
+`MAYFLY_TEST_TMPDIR=/var/tmp` places fixture data on the persistent filesystem
+while the system `/tmp` remains tmpfs, matching the production storage layout.
+The deployment script uses this setting.
 
 Optional browser checks, against a disposable instance at port 18792:
 
@@ -133,5 +136,7 @@ running. Report abuse with the download URL to slop@freifick.net.
 On startup, orphan data files and interrupted `.tmp` metadata are removed.
 Metadata and file renames are atomic but not fsync-durable across power loss;
 files may disappear early. Storage is bounded at 10 GiB including reservations for
-active uploads (plus small metadata/header overhead). Temp files use PrivateTmp
-in production. There is no upload backup or durable availability promise.
+active uploads (plus small metadata/header overhead). Temp files are staged in `MAYFLY_DATA/tmp` on the data filesystem,
+so publication can rename atomically even when `/tmp` is tmpfs. Staging is
+cleared at startup; run only one process per data directory. The service also
+enables PrivateTmp for other temporary files. There is no upload backup or durable availability promise.

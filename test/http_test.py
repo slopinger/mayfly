@@ -39,7 +39,7 @@ def upload(fields=None, content=b'hello from the temporary internet', path='/api
     return request(path, body, 'POST', {'Content-Type': f'multipart/form-data; boundary={boundary}', 'X-Real-IP': ip})
 
 
-with tempfile.TemporaryDirectory(prefix='mayfly-http-') as directory:
+with tempfile.TemporaryDirectory(prefix='mayfly-http-', dir=os.environ.get('MAYFLY_TEST_TMPDIR')) as directory:
     logfile = open(Path(directory) / 'server.log', 'w+')
     env = dict(os.environ, MAYFLY_DATA=directory, MAYFLY_URL=BASE, MAYFLY_PORT=str(PORT), ERL_FLAGS='+S 2:2')
     server = None
@@ -77,6 +77,7 @@ with tempfile.TemporaryDirectory(prefix='mayfly-http-') as directory:
             status, body, headers = request(path)
             assert status == 200 and headers['Content-Type'].startswith(kind), (path, status)
             assert body and headers['X-Content-Type-Options'] == 'nosniff'
+        assert (Path(directory) / 'tmp').is_dir(), 'upload staging must use the data filesystem'
         assert request('/api/upload')[0] == 405
         assert request('/f/../../etc/passwd')[0] == 404
         assert request('/api/upload', b'', 'POST', {'Origin': 'https://evil.invalid'})[0] == 403
