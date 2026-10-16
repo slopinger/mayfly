@@ -138,7 +138,7 @@ For abuse removal without the deletion capability: validate that the ID is exact
 32 lowercase hexadecimal characters, stop mayfly, remove only
 `/var/lib/mayfly/ID` and `/var/lib/mayfly/ID.json`, then start it. Stopping avoids
 racing publication and clears the in-memory index. Never edit metadata while
-running. Report abuse with the download URL to slop@freifick.net.
+running. Report abuse with the download URL to slopmoder@tutamail.com.
 
 On startup, orphan data files and interrupted `.tmp` metadata are removed.
 Metadata and file renames are atomic but not fsync-durable across power loss;
