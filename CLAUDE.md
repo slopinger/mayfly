@@ -20,7 +20,8 @@ sessionStorage excludes the previous variant on each reload; no personal data.
 - Deploy committed source with `./deploy.sh`; shipped BEAM at `/opt/mayfly/current`,
   service `mayfly`, loopback 8791, data `/var/lib/mayfly`. Uploads have no backups.
 - Update README and `/home/slop/CLAUDE.md` when behavior or operations change.
-- Signed commits, public MIT GitLab under slop, never commit uploads/secrets.
+- Signed commits, public MIT repo https://github.com/slopinger/mayfly (`git push origin main`),
+  never commit uploads/secrets.
 
 - Gleam package: `slopbox`. Repo path, service/user/data paths and
   `MAYFLY_*` settings retain legacy names for upgrade/link compatibility.
@@ -33,7 +34,7 @@ sessionStorage excludes the previous variant on each reload; no personal data.
 
 - Nix: `nix build`, `nix flake check`, `nix develop`; commit `flake.lock`.
   `nixosModules.default` exports the reusable host module; see README for options and limits.
-- Never add Co-Authored-By trailers or session links to public GitLab content.
+- Never add Co-Authored-By trailers or session links to public GitHub content.
 
 - Nix package/executable: `slopbox`; NixOS option remains `services.mayfly`.
   Verify with `nix build --no-link` and `nix flake check`.
