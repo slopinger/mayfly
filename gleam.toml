@@ -2,7 +2,7 @@ name = "slopbox"
 version = "0.1.0"
 description = "slopbox: anonymous temporary file sharing in Gleam"
 licences = ["MIT"]
-repository = { type = "gitlab", user = "slop", repo = "mayfly", host = "git.freifick.net" }
+repository = { type = "github", user = "slopinger", repo = "mayfly" }
 target = "erlang"
 
 [dependencies]

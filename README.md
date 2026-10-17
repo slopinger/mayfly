@@ -5,7 +5,7 @@ file host inspired by Litterbox. Written in **Gleam**, running on Erlang/OTP wit
 Wisp and Mist. A tiny handwritten Erlang FFI exposes the system clock; all
 application and storage logic lives in Gleam. Browser enhancement uses vanilla JS.
 
-Live: https://slopbox.freifick.net · Source: https://git.freifick.net/slop/mayfly
+Live: https://slopbox.freifick.net · Source: https://github.com/slopinger/mayfly
 
 Formerly mayfly. The Gleam package is `slopbox`. Old `mayfly.freifick.net`
 URLs redirect (308) to `slopbox.freifick.net`, preserving paths and methods. Existing
