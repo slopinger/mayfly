@@ -19,7 +19,7 @@ sessionStorage excludes the previous variant on each reload; no personal data.
 - Loopback binding is required. Caddy MUST overwrite X-Real-IP; no access log.
 - Deploy committed source with `./deploy.sh`; shipped BEAM at `/opt/mayfly/current`,
   service `mayfly`, loopback 8791, data `/var/lib/mayfly`. Uploads have no backups.
-- Update README and `/home/slop/CLAUDE.md` when behavior or operations change.
+- Update README and this file when behavior or operations change.
 - Signed commits, public MIT repo https://github.com/slopinger/mayfly (`git push origin main`),
   never commit uploads/secrets.
 
@@ -42,3 +42,13 @@ sessionStorage excludes the previous variant on each reload; no personal data.
 - Canonical origin is https://slopbox.freifick.net. `mayfly.freifick.net` returns
   308 redirects preserving the URI/method. Both site blocks remain in the legacy
   `/etc/caddy/conf.d/mayfly.freifick.net.caddy`; DNS A/AAAA are DNS-only.
+
+## Live service (slopbox.freifick.net)
+- Limits: anonymous streamed uploads up to 200 MiB, expiry 1/12/24/72 hours, 20 attempts/hour/IP,
+  four concurrent uploads, 10 GiB quota including reservations; rate state resets at restart. No URL
+  imports. JSON API `/api/upload`; Litterbox-style plain URL API `/resources/internals/api.php`.
+  The landing page's `#mayfly` card repeats these limits; keep it in sync.
+- `mayfly.service`: user `mayfly`, StateDirectory `/var/lib/mayfly` (0700), PrivateTmp, MemoryMax 1G;
+  releases in `/opt/mayfly/releases/<commit>` (rollback: README). Logs: `journalctl -u mayfly`.
+- Abuse removal without a deletion capability: validate a 32-character lowercase hex ID, stop mayfly,
+  remove only `/var/lib/mayfly/ID` and `ID.json`, start mayfly. Reports: slopmoder@tutamail.com.
